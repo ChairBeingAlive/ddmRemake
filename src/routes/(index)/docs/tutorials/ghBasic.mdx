@@ -1,6 +1,6 @@
-## Grasshopper Basics
+# Grasshopper Basics
 
-### Introduction
+## Introduction
 
 Welcome to Grasshopper. For designers who are exploring new shapes using
 generative algorithms, Grasshopper® is a graphical algorithm editor that takes
@@ -22,134 +22,209 @@ This tutorial should give you an overview about Grasshopper itself as well as
 the navigation and basic components. Further it shows how the plugin connects
 with Rhino and some important shortcuts for a smoother usage.
 
+---
+
+## Window
+
 ### Launch Grasshopper
 
 Since Rhinoceros3D version 6, Grasshopper is directly included in Rhino as a
-plugin. By typing „Grasshopper“ into the Rhino command prompt the plug-in will
-load automatically and this main Grasshopper window will show up:
+plugin. By typing `Grasshopper` into the Rhino command line, the plug-in will be
+loaded automatically and the main Grasshopper [interface](#interface) will show up:
 
 ![Grasshopper_22_StartGrasshopper.png](/ddmImg/Grasshopper_22_StartGrasshopper.png)
+> Launch command (Alternative: `left-click` the green grasshopper icon in the toolbar)
 
-### Interface and workplace
+---
 
-![Grasshopper_m1.png](/ddmImg/Grasshopper_m1.png)
+### Interface
 
-> 1. The main menu bar: The menu is similar to typical Windows menus. Each menu
->    shows more commands to edit the set tings or the canvas itself as well as
->    the shortcuts to these commands.
-> 2. File browser control: By clicking on the file name it opens the dropdown
->    menu which can be used to switch between different loaded files.
-> 3. Component panels: This area exposes all component categories. All
->    components belong to a certain category (such as „Params“ for all primitive
->    data types or „Curves“ for all curve related tools) and all categories are
->    available as unique toolbar panels. The height and width of the toolbars
->    can be adjusted, allowing for more or fewer on-screen buttons per category.
->    The toolbar panels themselves contain all the components that belong to
->    that category. Since there are a potentially large number of these, it only
->    shows the most recently used items. In order to see the entire collection,
->    you have to click on the bar at the bottom of the Panel:
+![grasshopperInterface.png](/ddmImg/grasshopperInterface.png)
 
-![Grasshopper_m2.png](/ddmImg/Grasshopper_m2.png)
+> 1. [**Main Menu Bar**](#main-menu-bar) - similar to typical Windows menus. 
+>    Each menu shows more commands to edit the set tings or the canvas itself as well as the shortcuts to these commands.
+> 2. **File Browser Control** - shows files you are working on and can be used for switching between files.
+> 3. **Component Panels** - list all component categories.
+> 
+>    All components belong to a certain category (such as `Params` for all primitive data types or `Curves` for all curve related tools) 
+>    and all categories are available as unique toolbar panels. 
+>    The height and width of the toolbars can be adjusted, allowing for more or fewer on-screen buttons per category.
+>
+>    The toolbar panels themselves contain all the components that belong to that category. 
+>    Since there are a potentially large number of these, it only shows the most recently used items. 
+>    In order to see the entire collection, you have to click on the bar at the bottom of the Panel. (Image at the right-hand side)
+> 4. **Canvas** - the main workplace where all the components will be arranged. 
+> 5. [**Canvas Toolbar**](#canvas-toolbar) - quick access to a number of frequently used features, 
+>    like open and save a file,  zoom in and out options, preview geometry options. 
+> 6. [**Radial Menu**](#radial-menu) - group, cluster, enable, disable, display, hide and bake components. 
 
-> 4. The canvas: The canvas is the main workplace where all the components will
->    be arranged. The canvas toolbar provides quick access to a number of
->    frequently used features. All the tools are available through the menu as
->    well, and you can hide the toolbar if you like. (It can be re-enabled from
->    the View menu).
+---
 
-![Grasshopper_m3.png](/ddmImg/Grasshopper_m3.png)
+### Main Menu Bar
 
-> A) Opens a Grasshopper file (.gh or .ghx)\
-> B) Save the current file\
-> C) Zoom defaults\
-> D) Zoom Extents (will adjust the zoom-factor if the definition is too large to
-> fit on the screen)\
-> E) Create a named view (choose between all named views by klicking on the tiny
-> arrow next to it)\
-> F) Sketch tool:\
-> The sketch tool works like most pencil-type tools of Photoshop or Windows
-> Paint. Default controls of the sketch tools allow changes of line weight, line
-> type, and color. However, it can be quite difficult to draw straight lines or
-> pre-defined shapes. In order to solve this problem, draw out any sketch line
-> onto the canvas. Right click on the line, and select „Load from Rhino“, and
-> select any pre-defined shape in your Rhino scene (This can be any 2d shape
-> like a rectangle, circle, star...etc.). Once you have selected your referenced
-> shape, hit Enter, and your previously drawn sketch line will be reconfigured
-> to your Rhino reference shape.\
-> G) Hide preview geometry\
-> H) Show wireframe preview geometry\
-> J) Show shaded preview geometry\
-> K) Draw a preview boundary on the canvas to exclude objects. Press ESCAPE to
-> remove any existing boundary.\
-> L) Only draw preview geometry for selected objects\
-> M) /ddmImgument preview settings\
-> N) Preview mesh quality
+![grasshopperMainMenuBar.png](/ddmImg/grasshopperMainMenuBar.png)
 
-> Objects on the canvas are usually color-coded to provide feedback about their
-> status:
+> 1. **File** - allows users to open and save Grasshopper file, export images of the canvas, access to component folders.
+> 2. **Edit** - lists common commands like `Undo`, `Redo`, `Cut`, `Copy`, `Paste`, and more. 
+> 3. **View** - provides options related to Grasshopper interface. 
+>    For instance, you can show or hide the canvas toobar and components here.
+> 4. **Display** - manage how components and wires appear on the canvas, including color, icons, names and other graphical attributes.
+>    Details of some display options are introduced in the [canvas toolbar](#canvas-toolbar) section.
+> 5. **Solution** - contains the settings for the geometry generated by Grasshopper and made visible in Rhino. 
+>    Details of functions like `Preview On` and `Preview Off` are introduced in the [radial menu](#radial-menu) section. 
+> 6. **Help** - links to resources, documentation, and information about Grasshopper.
 
-![Grasshopper_m4.png](/ddmImg/Grasshopper_m4.png)
+---
 
-> A) All objects selected within the Grasshopper canvas are drawn with a green
-> overlay.\
-> B) Parameter which encountered neither warnings nor errors.\
-> C) Parameters which encountered a warning are displayed with an orange box. (A
-> lof of parameters and components are orange when you drop them onto the canvas
-> since the lack of input data is considered to be an error.)\
-> D) Component which encountered neither warnings nor errors.\
-> E) In comparison to a parameter a component is a more complex object, since it
-> contains input and output parameters and one or more data transformations.
-> This particular component has at least 1 warning associated with it. You can
-> find warning and errors through the context menu of objects.\
-> F) Component which encountered at least 1 error. The error can come either
-> from the component itself or from one of its input/output parameters. We will
-> learn more about component structures in the following chapters.
+### Canvas Toolbar
 
-### How to use Components
+![grasshopperCanvasToolbar.png](/ddmImg/grasshopperCanvasToolbar.png)
 
-Every Component can be added with drag and drop to the canvas or by double
-clicking onto the canvas and typing its name.Alternatively you can also click
-space and start typing the name of your desired component. A lof of components
-are very similar to common commands and functions within Rhino. If you have a
-certain action in mind and know its command for Rhino, try finding the
+> 1. **Open** a Grasshopper file (.gh or .ghx)
+> 2. **Save** the current file
+> 3. **Zoom Factor**
+> 4. **Zoom Extents** - offer several zoom options like zoom to selected components. 
+> 5. **View Tool** - save current view as named view for future use. 
+> 6. **Sketch tool** -  The sketch tool works like most pencil-type tools of Photoshop or Windows Paint. 
+>    Default controls of the sketch tools allow changes of line weight, line type, and color. 
+>    However, it can be quite difficult to draw straight lines or pre-defined shapes. 
+>    In order to solve this problem, draw out any sketch line onto the canvas. 
+>    Right click on the line, and select `Load from Rhino`, and select any pre-defined shape in your Rhino scene 
+>    (This can be any 2d shape like a rectangle, circle, star...etc.). 
+>    Once you have selected your referenced shape, hit Enter, and your previously drawn sketch line will be reconfigured to your Rhino reference shape.
+
+> Grasshopper geometries are displayed dynamically within Rhino's viewports, offering a real-time glimpse of the modeling progression. 
+> However, when numerous components are in play, there's a potential for geometries to overlap, leading to obscured or overlapping visualizations. 
+> In this case, the following tools can be used to show only the parts you want to see:
+> 
+> 7. **No preview** - all geometry in grasshopper will **NOT** be shown in Rhino.
+> 8. **Wireframe preview** - geometry in grasshopper will be shown in **wireframe** mode in Rhino.
+> 9. **Shaded preview** - geometry in grasshopper will be shown in **shaded** mode in Rhino.
+> 10. **Preview inside boundary** - with this tool you can draw a preview boundary on the canvas, and only geometry inside the boundary will be shown. 
+>     Press ESCAPE to remove any existing boundary.
+> 11. **Preview on selected geometry** - only draw preview geometry for selected objects.
+> 12. **Preview settings** - allows for changing preview colors in Rhino.
+> 13. **Preview mesh quality** - allows for changing preview quality of mesh.
+>
+> Note: alternatives to displaying and hidding some geometries are using the `Enable Preview` and `Disable Preview` tools in [radial menu](#radial-menu). 
+
+---
+
+### Radial Menu 
+
+
+The radial menu, showing up by clicking on the `middle mouse wheel`, provides useful functions like preview, enable, group and cluster the components. 
+Those function can alternatively be accessed by `right-click` in the canvas.
+
+![grasshopperRadialMenu.png](/ddmImg/grasshopperRadialMenu.png)
+
+> 1. **Preview On** - enables preview for the selected objects.
+> 2. **Preview Off** - disables preview for the selected objects.
+> 3. **Enable** - activetes the function of selected objects. 
+> 4. **Disable** - halts the function of selected objects. This feature is useful for components that demand intensive computations, such as simulations. 
+>    When a component is active, any alteration in its inputs triggers a re-computation, potentially hindering the modeling process's speed. 
+>    To optimize workflow, you can initially disable such components and only activate them once other tasks are complete.
+> 5. **Bake** - converts parametrically generated objects from Grasshopper into the ones in Rhino. More details will be introduced [later](#bake). 
+> 6. **Group** - group selected objects, similar to group function in Rhino.
+> 7. **Cluster** - combine selected objects into one component.
+> 8. **Navigate** - navigates to desired section of the canvas.
+
+---
+
+## Objects
+
+### Paramters and Components
+
+**Objects** are the basic building blocks in the Grasshopper canvas. 
+Each object performs a specific function, such as creating geometries, transforming shapes, performing mathematical operations, and so forth. 
+Objects have inputs and outputs that you can connect using wires.
+
+In Grasshopper, there are multiple types of objects, but we'll focus on two primary ones: **parameters** and **components**.
+Parameters are essentially **data containers**. They **store** various kinds of information, such as when we use them to [reference geometries](#reference-from-rhino) from Rhino.
+On the other hand, components are **actions containers**. They **perform** tasks, like analyzing and deforming geometries. 
+
+![grasshopperParametersAndComponents](/ddmImg/grasshopperParametersAndComponents.png)
+
+> Paramters (left) and Components (right)
+
+---
+
+### Add Objects
+
+Each object can be added to the canvas by a "drag-n-drop" process.
+Alternatively, you can double-click the canvas or press the `spacebar`, and search by its name.
+Many components' names are very similar to common commands and functions within Rhino. 
+If you have a certain action in mind and know its command for Rhino, try finding the
 corresponding component in Grasshopper.
 
 ![Grasshopper_01_Component](/ddmImg/Grasshopper_01_Component.png)
+> Command line in Grasshopper
 
-##### Component basics
+---
+
+### Objects Status
+
+Objects on the canvas are usually color-coded to provide feedback about their status: 
+**Grey** indicates neither warnings nor error.
+**Orange** is indicative of a warning, meaning the component is functioning and there might be outputs, but there's something you should be aware of. 
+**Red** means there's an error, meaning the component cannot complete its task due to some issue with the input data or other conditions.
+
+![grasshopperObjectsStatus](/ddmImg/grasshopperObjectsStatus.png)
+
+> 1. All objects **selected** within the Grasshopper canvas are drawn with a green
+> overlay.
+> 2. Parameter which encountered **neither warnings nor errors**.
+> 3. Parameter which encountered **a warning** are displayed with an orange box. 
+> Note: A lot of parameters and components are **orange** when you drop them onto the canvas
+> since the lack of input data is considered to be an error.
+> 4. Component which encountered **neither warnings nor errors**.
+> 5. Component which has at least **a warning** associated with it. You can
+> find warning and errors through the context menu of objects.
+> 6. Component which encountered at least **an error**. The error can come either
+> from the component itself or from one of its input/output parameters. We will
+> learn more about component structures in the following chapters.
+
+---
+
+### Component Composition
+
+As a actions container, a component requires inputs to execute tasks and produce the desired output. 
+Typically, a component is structured into three parts: **input nodes** on the left, the **component's name or icon** in the center, and **output nodes** on the right. 
+By linking the output of a parameter or another component to its input, you can supply the necessary data to the component.
 
 ![Grasshopper_02_ComponentBasic.png](/ddmImg/Grasshopper_02_ComponentBasic.png)
 
-> If you hover over the input node of a component for a few moments a window
-> will pop up, giving you more information about the type of input this
-> component expects. By connecting a parameter or the output of another
-> component you can feed data to the input node. To directly set the data source
-> without connecting an input parameter or component right click on the input
-> not and select "set one [data source]" (or multiple inputs).
+> 1. **Needed Inputs** - If you hover over the input node of a component for a few moments a window
+> will pop up, giving you more information about the type of input this component expects. \
+> Note: To directly set the data source for a paramter without connecting output from a parameter or component, you can `right click` on the input
+> not and select `set one [data source]` or `set multiple inputs`, see details [below](#reference-from-rhino). 
+> 2. **Output** - similarly, hovering over the output node, you could get more information about the output, like data type and structure. 
 
-##### Zoom-In interface
+#### Zoom-In Interface
 
 ![Grasshopper_03_Zoominterface.png](/ddmImg/Grasshopper_03_Zoominterface.png)
 
 > Some components offer additional input nodes if you zoom in. With the plus (+)
 > and minus (-) you can add or remove input nodes from the component if needed.
 
-### Geometry Reference
+--- 
 
-Inputs and outputs from Grasshopper can be connected with the workspace inside
-of Rhino. An object from Rhino can be a Grasshopper input but it can also be
-generated with Grasshopper and then be used in Rhino. The command to make
-objects from Grasshopper editable in Rhino is called "bake". Right click on a
-component or parameter to get access to the bake command.
+## Geometry
+
+### Appearance
+
+Within Grasshopper, inputs and outputs can be seamlessly integrated with the Rhino workspace. 
+Geometries in Grasshopper can either be [**referenced**](#reference) from objects within Rhino or directly constructed using Grasshopper components. 
+Similarly, you can translate Grasshopper geometries into editable forms in Rhino using the [**bake**](#bake) command.
 
 ![Grasshopper_23_ConnectionRhinoGH.png](/ddmImg/Grasshopper_23_ConnectionRhinoGH.png)
 
 > Here you see the Rhino viewport and Grasshopper canvas side by side. The three
-> spheres in the rhino workspace illustrate their origin through a destinct
+> spheres in the rhino workspace illustrate their origin through a distinct
 > color coding:
 >
-> 1. The grey one on the left is generated in Rhino with the command "sphere".
->    It is also editable and can interact with other rhino objects.
+> 1. The grey one on the left is generated in Rhino with the command `sphere`.
+>    It is also editable and can interact with other Rhino objects.
 > 2. The red one in the middle is generated with the sphere component from
 >    Grasshopper. The red wireframe indicates an origin from Grasshopper. Red
 >    also means, that the component containing this geometry an Grasshopper is
@@ -157,31 +232,59 @@ component or parameter to get access to the bake command.
 > 3. If you activate the component in Grasshopper it not just turns green in
 >    Grasshopper. The red wireframe in the Rhino viewort turns green as well.
 
-##### Transfer output from Grasshopper to Rhino
+---
 
-![Grasshopper_24_Bake.png](/ddmImg/Grasshopper_24_Bake.png)
+### Reference from Rhino
 
-> Red and green Grasshopper wireframe "holograms" in the Rhino viewport are not
-> editable with Rhino and cannot interact with Rhino objects (no snapping etc.).
-> To enable editing you can „bake“ geometry. Simply right click on the output
-> you would like to transfer to rhino and choose "bake".
+In Grasshopper, **parameters** like `Point`, `Curve`, `Surface` and `Brep`are normally used to 
+reference **points**, **curves**, **surfaces** and **polysurfaces** in Rhino, respectively. 
+It is worth noting that although there is parameter like `Circle` in grasshopper, 
+you still need to use `curve` instead of `circle` to reference a circle in Rhino.
+One reason is that you can gain more flexibility using `Curve`. 
+You can still derive circle-specific properties from it, like its center point or radius, but you also have the broader range of functionalities available for curves.
 
-![Grasshopper_25_Bake.png](/ddmImg/Grasshopper_25_Bake.png)
+**Note on `Brep`**: If you check `Params` tag in Grasshopper, there is not parameter called `Polysurface`. 
+To represent polysurface(s) in Rhino, we use the `Brep` component in Grasshopper. `Brep` stands for *boundary representation* that describes 3D shapes by delineating their boundaries.
+BREPs provide a very comprehensive representation including the vertices, edges, surfaces of the polysurface. 
+A Brep can be a single surface or a polysurface, meaning you can also use `Brep` to represent surfaces in Rhino.
 
-> A window will show up. Here you can define on which layer you would like to
-> place the geometry on after baking. Click "ok" to bake it.
+![grasshopperReference.png](/ddmImg/grasshopperReference.png)
+
+> To reference a geometry (for instance, the sphere depicted in the image) from Rhino, select the sphere in Rhino, 
+> `right-click` on the parameter and choose `Set one Brep`. 
+> If you aim to reference several geometries, opt for `Set Multiple Breps`. 
+> This logic can similarly be applied to the other parameters.
+> 
+> Note: Again, if you want to reference a polysurface, please use `Brep`. 
+> You cannot use `Surface` and `Set Multiple Surfaces` to achieve this. 
+> In other words, a polysurface is not equal to multiple surfaces.
+
+---
+
+### Bake to Rhino
+
+Red and green Grasshopper wireframe "holograms" in the Rhino viewport are not
+editable with Rhino and cannot interact with Rhino objects (no snapping etc.).
+To enable editing you can **bake** geometry.
+
+![grasshopperBake.png](/ddmImg/grasshopperBake.png)
+
+> 1. `Right-click` on the output node and select `Bake`.
+> 2. A window will show up. Here you can define on which layer you would like to
+>    place the geometry on after baking. Click `OK` to bake it.
 
 ![Grasshopper_26_Bake.png](/ddmImg/Grasshopper_26_Bake.png)
 
 > Now we have baked the right sphere. Visually and in regard to its behaviour it
-> is now the same as the one we created within Rhino with the "sphere" command
-> (the one on the left).\
-> ATTENTION: After baking the object, it is no longer connected to grasshopper
-> and is not affected by any changes made in Grasshopper.
+> is now the same as the one we created within Rhino with the `sphere` command
+> (the one on the left).
+>
+> Note: After baking the object, it is no longer connected to Grasshopper
+> and therefore is not affected by any changes made in Grasshopper.
 
-### Data in Grasshopper
+## Data in Grasshopper
 
-##### Distributing data
+### Distributing data
 
 ![Grasshopper_04_DatainGrasshopper.png](/ddmImg/Grasshopper_04_DatainGrasshopper.png)
 
@@ -189,7 +292,7 @@ component or parameter to get access to the bake command.
 > referenced (right click on the component), or externally as an output of
 > another component.
 
-##### Data Management
+### Data Management
 
 ![Grasshopper_05_DatainGrasshopper.png](/ddmImg/Grasshopper_05_DatainGrasshopper.png)
 
@@ -199,7 +302,7 @@ component or parameter to get access to the bake command.
 > 2. As a list of items
 > 3. As a "data tree" (a list containing lists)
 
-##### List
+### List
 
 ![Grasshopper_06_List.png](/ddmImg/Grasshopper_06_List.png)
 
@@ -214,7 +317,7 @@ component or parameter to get access to the bake command.
 Under the following link you can find an overview of list operations in
 Grasshopper: http://wiki.bk.tudelft.nl/toi-pedia/Grasshopper_Basic_List_Actions
 
-##### Data-Tree
+### Data-Tree
 
 ![Grasshopper_07_DataTree.png](/ddmImg/Grasshopper_07_DataTree.png)
 
@@ -236,7 +339,7 @@ By right-clicking on the in- or output of a component you can choose different
 options to manipulate the data stream. The options are Reverse, Flatten, Graft,
 Simplify and Expression.
 
-##### Reverse
+#### Reverse
 
 ![Grasshopper_09_Reverse.png](/ddmImg/Grasshopper_09_Reverse.png)
 
@@ -246,7 +349,7 @@ Simplify and Expression.
 
 ![Grasshopper_10_Reverse.png](/ddmImg/Grasshopper_10_Reverse.png)
 
-##### Graft / Flatten
+#### Graft / Flatten
 
 To understand this function we have to understand how grasshopper manages and
 organises data. Multiple lists are stored in trees and each tree has a branches.
@@ -271,7 +374,7 @@ example:
 
 ![Grasshopper_13GrafandFlatten.png](/ddmImg/Grasshopper_13GrafandFlatten.png)
 
-> Now we can right-click on the output node of the „construct point“ component
+> Now we can right-click on the output node of the "construct point" component
 > and click on graft.
 
 ![Grasshopper_14_GraftandFlatten.png](/ddmImg/Grasshopper_14_GraftandFlatten.png)
@@ -301,7 +404,7 @@ example:
 
 > an overview with all steps from graft to flatten a list.
 
-##### Simplify
+#### Simplify
 
 ![Grasshopper_19_Simplify.png](/ddmImg/Grasshopper_19_Simplify.png)
 
@@ -314,7 +417,7 @@ example:
 
 ![Grasshopper_20_Simplify.png](/ddmImg/Grasshopper_20_Simplify.png)
 
-##### Expression
+#### Expression
 
 ![Grasshopper_21_Expression.png](/ddmImg/Grasshopper_21_Expression.png)
 
@@ -323,44 +426,47 @@ example:
 > two). You can also use the „expression“ component for the same result. It is a
 > little bit more user-friendly.
 
-### Plugin Installation
+---
+
+## Plugin Installation
 
 A plugin is a software component that adds specific features to an existing
 computer program. Grasshopper as well as Rhino allows the installation of
 plugins. These additional components allow functional extensions or the
 simplification of certain operations.
 
-##### Installation
-
 Installing a plugin for Grasshopper only needs a few steps. Shown here is an
 example with the "/ddmImgofossor" plugin. It is a terrain modeling plugin for
 Rhino and Grasshopper. It enables easy editing of cut and fill operations for
 landscape architecture.
 
-> 1. Download the plug-in from [Food4Rhino](https://www.food4rhino.com/) - you
->    will need to create an account - and unzip the downloaded folder.
 
 ![Grasshopper_m5.png](/ddmImg/Grasshopper_m5.png)
 
-> 2. Launch Rhino and run the **Grasshopper** command.
+> 1. Download the plug-in from [Food4Rhino](https://www.food4rhino.com/) - you
+>    will need to create an account - and unzip the downloaded folder.
 
 ![Grasshopper_m7.png](/ddmImg/Grasshopper_m7.png)
 
-> 3. Open _File_ > _Special Folders_ > _Components Folder_
+> 2. Launch Rhino and run the **Grasshopper** command.
 
 ![Grasshopper_m8.png](/ddmImg/Grasshopper_m8.png)
+
+> 3. Open _File_ > _Special Folders_ > _Components Folder_
+
+![Grasshopper_m9.png](/ddmImg/Grasshopper_m9.png)
 
 > 4. Copy the the .ghpy file from the unziped folder in the window that opened.
 >    Close the window when done .
 
-![Grasshopper_m9.png](/ddmImg/Grasshopper_m9.png)
+![Grasshopper_m10.png](/ddmImg/Grasshopper_m10.png)
 
 > 5. The /ddmImgofossor panel will appear as a component panel together with the
 >    all its additional components. If not, restart Grasshopper and/or Rhino.
 
-![Grasshopper_m10.png](/ddmImg/Grasshopper_m10.png)
+---
 
-### Shortcuts
+## Shortcuts
 
 | Shortcut                                        | Description                                                                |
 | ----------------------------------------------- | -------------------------------------------------------------------------- |
@@ -386,3 +492,5 @@ landscape architecture.
 | Ctrl + Q                                        | Hides all selected components from the Rhino view                          |
 | Ctrl + Shift + I                                | Selects all components except the selected ones                            |
 | Ctrl + Shift + drag by holding left             | Drag all connected wires to another component                              |
+
+---
